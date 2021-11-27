@@ -1,4 +1,3 @@
-import 'package:expense_app/models/transaction.dart';
 import 'package:flutter/material.dart';
 import './widgets/_user_transactions.dart';
 
@@ -29,7 +28,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Center(
+      body: const Center(
         child: UserTransactions(),
       ),
     );

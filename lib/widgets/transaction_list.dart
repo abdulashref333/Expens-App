@@ -17,18 +17,18 @@ class TransactionList extends StatelessWidget {
               children: <Widget>[
                 Container(
                   // margin: EdgeInsets.all(10.0),
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 7),
+                  padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
                   decoration: BoxDecoration(border: Border.all(color: Colors.deepPurpleAccent)),
-                  child: Text('\$${transaction.amount}', style: TextStyle(color: Colors.deepPurpleAccent),),
+                  child: Text('\$${transaction.amount}', style: const TextStyle(color: Colors.deepPurpleAccent),),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(transaction.title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-                    Text(DateFormat().format(transaction.date), style: TextStyle(color: Colors.grey), )
+                    Text(transaction.title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                    Text(DateFormat().format(transaction.date), style: const TextStyle(color: Colors.grey), )
                   ],
               ),
-              IconButton(onPressed: () => deletTransaction(transaction), icon: Icon(Icons.delete , color: Colors.red,))
+              IconButton(onPressed: () => deletTransaction(transaction), icon: const Icon(Icons.delete , color: Colors.red,))
             ],));
           }).toList(),
         );

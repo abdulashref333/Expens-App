@@ -12,7 +12,8 @@ class UserTransactions extends StatefulWidget {
 
 class _UserTransactionsState extends State<UserTransactions> {
   
-  List<Transaction> _UserTransactions = [];
+  // ignore: non_constant_identifier_names
+  final List<Transaction> _UserTransactions = [];
   @override
   Widget build(BuildContext context) {
     return  ListView(
@@ -25,12 +26,12 @@ class _UserTransactionsState extends State<UserTransactions> {
 
   void deletTransaction(Transaction transaction){
     setState(() {
-      this._UserTransactions.remove(transaction);
+      _UserTransactions.remove(transaction);
     });
   }
   void addTransaction({required Transaction transcation}){
     setState(() {
-      this._UserTransactions.add(transcation);
+      _UserTransactions.add(transcation);
     });
   }
 

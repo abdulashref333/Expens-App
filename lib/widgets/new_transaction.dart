@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 
+// ignore: must_be_immutable
 class NewTransaction extends StatelessWidget {
 
   final Function addTx;
   var titleInputController = TextEditingController();
   var amountInputController = TextEditingController();
   
-  NewTransaction(this.addTx);
+  NewTransaction(this.addTx, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       child: Container(
-        padding: EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            TextField(decoration: InputDecoration(labelText: 'Title'), controller: titleInputController,),
-            TextField(decoration: InputDecoration(labelText: 'Amount'), controller: amountInputController,),
+            TextField(decoration: const InputDecoration(labelText: 'Title'), controller: titleInputController,),
+            TextField(decoration: const InputDecoration(labelText: 'Amount'), controller: amountInputController,),
             TextButton(
               onPressed: () {
                 addTx(transcation:Transaction(
@@ -28,7 +29,7 @@ class NewTransaction extends StatelessWidget {
                   amount: double.parse(amountInputController.text), 
                   date: DateTime.now()));
               },
-              child: Text('Add Transaction', style: TextStyle(color: Colors.deepPurpleAccent),))
+              child: const Text('Add Transaction', style: TextStyle(color: Colors.deepPurpleAccent),))
           ],
         ),
       ),

@@ -16,7 +16,7 @@ class _UserTransactionsState extends State<UserTransactions> {
   final List<Transaction> _UserTransactions = [];
   @override
   Widget build(BuildContext context) {
-    return  ListView(
+    return  Column(
           children: <Widget>[
             NewTransaction(addTransaction),
             TransactionList(transactions: _UserTransactions, deletTransaction: deletTransaction,),

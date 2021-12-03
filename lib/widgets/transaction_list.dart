@@ -9,28 +9,37 @@ class TransactionList extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: transactions.map((transaction) {
-            return Card(child: Row(
+    return Container(
+      height: 350,
+      child: ListView.builder(
+        itemBuilder: (ctx, index) {
+          return Card(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
                   // margin: EdgeInsets.all(10.0),
                   padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
                   decoration: BoxDecoration(border: Border.all(color: Colors.deepPurpleAccent)),
-                  child: Text('\$${transaction.amount}', style: const TextStyle(color: Colors.deepPurpleAccent),),
+                  child: Text('\$${transactions[index].amount.toStringAsFixed(2)}', style: const TextStyle(color: Colors.deepPurpleAccent),),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(transaction.title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-                    Text(DateFormat().format(transaction.date), style: const TextStyle(color: Colors.grey), )
+                    Text(transactions[index].title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                    Text(DateFormat().format(transactions[index].date), style: const TextStyle(color: Colors.grey), )
                   ],
               ),
-              IconButton(onPressed: () => deletTransaction(transaction), icon: const Icon(Icons.delete , color: Colors.red,))
-            ],));
-          }).toList(),
-        );
+                IconButton(
+                  onPressed: () => deletTransaction(transactions[index]),
+                  icon: const Icon(Icons.delete , color: Colors.red,)
+                )
+              ]
+            )
+          );
+        },
+        itemCount: transactions.length,
+      )
+    );
   }
 }

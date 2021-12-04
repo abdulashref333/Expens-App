@@ -10,6 +10,22 @@ class NewTransaction extends StatelessWidget {
   
   NewTransaction(this.addTx, {Key? key}) : super(key: key);
 
+  void addNewTransaction(){
+    // print('i was called....hahah.');
+    final enteredTitle = titleInputController.text;
+    final enteredAmount = double.parse(amountInputController.text.isEmpty ? '0' : amountInputController.text);
+    if(enteredTitle.isEmpty || enteredAmount <= 0){
+      return ;
+    }
+    addTx(
+      transcation:Transaction(
+        id: enteredTitle + ":"+ DateTime.now().toString(),
+        title: enteredTitle,
+        amount: enteredAmount, 
+        date: DateTime.now()
+      )
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -19,16 +35,19 @@ class NewTransaction extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            TextField(decoration: const InputDecoration(labelText: 'Title'), controller: titleInputController,),
-            TextField(decoration: const InputDecoration(labelText: 'Amount'), controller: amountInputController,),
+            TextField(
+              decoration: const InputDecoration(labelText: 'Title'), 
+              controller: titleInputController,
+              onSubmitted: (val) => addNewTransaction(),
+            ),
+            TextField(
+              decoration: const InputDecoration(labelText: 'Amount'), 
+              controller: amountInputController,
+              keyboardType: TextInputType.number,
+              onSubmitted: (val) => addNewTransaction(),
+            ),
             TextButton(
-              onPressed: () {
-                addTx(transcation:Transaction(
-                  id: titleInputController.text,
-                  title: titleInputController.text,
-                  amount: double.parse(amountInputController.text), 
-                  date: DateTime.now()));
-              },
+              onPressed: addNewTransaction,
               child: const Text('Add Transaction', style: TextStyle(color: Colors.deepPurpleAccent),))
           ],
         ),

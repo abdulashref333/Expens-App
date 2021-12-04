@@ -28,8 +28,12 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: const Center(
-        child: UserTransactions(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            UserTransactions(),
+          ],
+        ),
       ),
     );
   }

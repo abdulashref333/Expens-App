@@ -1,3 +1,4 @@
+import 'package:expense_app/widgets/chart.dart';
 import 'package:expense_app/widgets/new_transaction.dart';
 import 'package:expense_app/widgets/transaction_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,8 +35,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _UserTransactions = [];
+  final List<Transaction> _UserTransactions = [
+    Transaction(id: '22', title: 'tomorwo', amount: 20.5, date: DateTime.now().subtract(Duration(days: 1))),
+    Transaction(id: '33', title: 'after tomorrow', amount: 50, date: DateTime.now().subtract(Duration(days: 2))),
+    Transaction(id: '33', title: 'after after tomorrow', amount: 50, date: DateTime.now().subtract(Duration(days: 3))),
+  ];
 
+  List<Transaction> get _recentTransactions{
+    return _UserTransactions.where((element) {
+      return element.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
+    }).toList();
+  }
   void _displayNewTransactionForm(BuildContext ctx) {
     showModalBottomSheet(
         context: ctx,
@@ -71,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Chart(_recentTransactions),
             TransactionList(
               transactions: _UserTransactions,
               deletTransaction: deletTransaction,

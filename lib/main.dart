@@ -81,10 +81,13 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Chart(_recentTransactions),
-            TransactionList(
-              transactions: _UserTransactions,
-              deletTransaction: deletTransaction,
+            Container(margin: EdgeInsets.all(10), child: Chart(_recentTransactions)),
+            Container(
+              margin: EdgeInsets.all(10),
+              child: TransactionList(
+                transactions: _UserTransactions,
+                deletTransaction: deletTransaction,
+              ),
             ),
           ],
         ),

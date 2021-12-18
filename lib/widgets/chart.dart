@@ -23,7 +23,7 @@ class Chart extends StatelessWidget {
         }
       }
       return {'day': DateFormat.E().format(weekDay), 'amount': totalAmountSum};
-    });
+    }).reversed.toList();
   }
 
   double get maxTotalSum {
@@ -39,7 +39,7 @@ class Chart extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: groupedTransactions.map((dayTransaction) {
             return Container(
-                padding: EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(5.0),
                 child: ChartBar(
                   label: dayTransaction['day'],
                   amount: dayTransaction['amount'],
